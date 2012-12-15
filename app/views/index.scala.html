@@ -28,6 +28,7 @@
                     <li><a href="http://www.objectify.be" target="_blank"><i class="icon-globe"></i>Objectify</a></li>
                     <li><a href="https://twitter.com/steve_objectify" target="_blank"><i class="icon-twitter"></i> Twitter</a></li>
                     <li><a href="https://www.github.com/schaloner" target="_blank"><i class="icon-github"></i> GitHub</a></li>
+                    <li><a href="http://deadbolt-2-java.herokuapp.com" target="_blank"><i class="icon-beaker"></i> Deadbolt 2 Java examples</a></li>
                 </ul>
             </div>
         </div>
@@ -72,7 +73,7 @@
                     <p>For the purposes of these examples, except where stated otherwise, the user has the following roles:</p>
                     <ul>
                         @for(role <- handler.getSubject(request).get.getRoles()){
-                        <li>@role.getRoleName</li>
+                        <li>@role.getName</li>
                         }
                     </ul>
 
