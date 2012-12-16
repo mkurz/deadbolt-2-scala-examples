@@ -18,4 +18,6 @@ class User(val userName: String) extends Subject
   def getPermissions: java.util.List[UserPermission] = {
     Scala.asJava(List(new UserPermission("printers.edit")))
   }
+
+  def getIdentifier: String = userName
 }
