@@ -9,10 +9,12 @@ import models.User
  *
  * @author Steve Chaloner (steve@objectify.be)
  */
-class MyDeadboltHandler(dynamicResourceHandler: DynamicResourceHandler = null) extends DeadboltHandler
-{
+class MyDeadboltHandler(dynamicResourceHandler: Option[DynamicResourceHandler] = None) extends DeadboltHandler {
+
+  def beforeAuthCheck[A](request: Request[A]) = None
+
   override def getDynamicResourceHandler[A](request: Request[A]): Option[DynamicResourceHandler] = {
-    if (dynamicResourceHandler != null) Some(dynamicResourceHandler)
+    if (dynamicResourceHandler.isDefined) dynamicResourceHandler
     else Some(new MyDynamicResourceHandler())
   }
 

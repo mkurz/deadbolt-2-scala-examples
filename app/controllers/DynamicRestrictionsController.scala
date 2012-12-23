@@ -17,7 +17,7 @@ object DynamicRestrictionsController extends Controller with DeadboltActions
                    }
                  }
 
-  def noWayJose = Dynamic("pureLuck", "", new MyDeadboltHandler(MyAlternativeDynamicResourceHandler)) {
+  def noWayJose = Dynamic("pureLuck", "", new MyDeadboltHandler(Some(MyAlternativeDynamicResourceHandler))) {
                     Action {
                       Ok(accessOk())
                     }

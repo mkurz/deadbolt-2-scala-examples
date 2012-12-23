@@ -46,7 +46,7 @@
 }</pre>
     </div>
     <div class="span2">
-        @dynamic(new MyDeadboltHandler(MyAlternativeDynamicResourceHandler), "pureLuck") {
+        @dynamic(new MyDeadboltHandler(Some(MyAlternativeDynamicResourceHandler)), "pureLuck") {
         This content should NOT be visible
         }
     </div>
@@ -80,7 +80,7 @@
 }{Guess you were unlucky}</pre>
     </div>
     <div class="span2">
-        @dynamicOr(new MyDeadboltHandler(MyAlternativeDynamicResourceHandler), "pureLuck") {
+        @dynamicOr(new MyDeadboltHandler(Some(MyAlternativeDynamicResourceHandler)), "pureLuck") {
         This content should NOT be visible
         }{Guess you were unlucky}
     </div>
