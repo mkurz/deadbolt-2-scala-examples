@@ -23,7 +23,7 @@ class MyDeadboltHandler(dynamicResourceHandler: Option[DynamicResourceHandler] =
     Some(new User("steve"))
   }
 
-  def onAccessFailure[A](request: Request[A]): Result = {
+  def onAuthFailure[A](request: Request[A]): Result = {
     Results.Forbidden(views.html.accessFailed())
   }
 }
