@@ -15,25 +15,25 @@ object RestrictController extends Controller with DeadboltActions
                 Ok(accessOk())
               }
 
-  def restrictOne = Restrictions(Array("foo"), new MyDeadboltHandler) {
+  def restrictOne = Restrict(Array("foo"), new MyDeadboltHandler) {
                       Action {
                         Ok(accessOk())
                       }
                     }
 
-  def restrictTwo = Restrictions(Array("foo", "bar"), new MyDeadboltHandler) {
+  def restrictTwo = Restrict(Array("foo", "bar"), new MyDeadboltHandler) {
                       Action {
                         Ok(accessOk())
                       }
                     }
 
-  def restrictThree = Restrictions(Array("foo", "!bar"), new MyDeadboltHandler) {
+  def restrictThree = Restrict(Array("foo", "!bar"), new MyDeadboltHandler) {
                         Action {
                           Ok(accessOk())
                         }
                       }
 
-  def restrictFour = Restrictions(Array("hurdy"), new MyDeadboltHandler) {
+  def restrictFour = Restrict(Array("hurdy"), new MyDeadboltHandler) {
                        Action {
                          Ok(accessOk())
                        }

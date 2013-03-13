@@ -8,11 +8,6 @@ GET     /restrict1                  controllers.RestrictController.restrictOne
 GET     /restrict2                  controllers.RestrictController.restrictTwo
 GET     /restrict3                  controllers.RestrictController.restrictThree
 GET     /restrict4                  controllers.RestrictController.restrictFour
-GET     /restrictions1              controllers.RestrictionsController.restrictionsOne
-GET     /restrictions2              controllers.RestrictionsController.restrictionsTwo
-GET     /restrictions3              controllers.RestrictionsController.restrictionsThree
-GET     /restrictions4              controllers.RestrictionsController.restrictionsFour
-GET     /restrictions5              controllers.RestrictionsController.restrictionsFive
 GET     /pureLuck                   controllers.DynamicRestrictionsController.pureLuck
 GET     /noWayJose                  controllers.DynamicRestrictionsController.noWayJose
 GET     /rhp_roleHolderPresent      controllers.SubjectPresentController.loggedIn
