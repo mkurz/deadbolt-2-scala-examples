@@ -15,7 +15,7 @@ object ApplicationBuild extends Build {
       // Change this to point to your local play repository
       resolvers += Resolver.url("Objectify Play Repository", url("http://schaloner.github.com/releases/"))(Resolver.ivyStylePatterns),
       resolvers += Resolver.url("Objectify Play Repository - snapshots", url("http://schaloner.github.com/snapshots/"))(Resolver.ivyStylePatterns),
-      resolvers += Resolver.url("typesafe", url("http://repo.typesafe.com/typesafe/repo"))
+      resolvers += "typesafe" at "http://repo.typesafe.com/typesafe/repo"
     )
 
 }
