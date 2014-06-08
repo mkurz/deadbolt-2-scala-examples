@@ -4,6 +4,8 @@ import be.objectify.deadbolt.scala.{DynamicResourceHandler, DeadboltHandler}
 import play.api.mvc.{Request, Result, Results}
 import be.objectify.deadbolt.core.models.Subject
 import models.User
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent._
 
 /**
  *
@@ -23,7 +25,7 @@ class MyDeadboltHandler(dynamicResourceHandler: Option[DynamicResourceHandler] =
     Some(new User("steve"))
   }
 
-  def onAuthFailure[A](request: Request[A]): Result = {
-    Results.Forbidden(views.html.accessFailed())
+  def onAuthFailure[A](request: Request[A]): Future[Result] = {
+    Future {Results.Forbidden(views.html.accessFailed())}
   }
 }
