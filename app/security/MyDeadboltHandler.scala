@@ -20,9 +20,9 @@ class MyDeadboltHandler(dynamicResourceHandler: Option[DynamicResourceHandler] =
     else Some(new MyDynamicResourceHandler())
   }
 
-  override def getSubject[A](request: Request[A]): Option[Subject] = {
+  override def getSubject[A](request: Request[A]): Future[Option[Subject]] = {
     // e.g. request.session.get("user")
-    Some(new User("steve"))
+    Future(Some(new User("steve")))
   }
 
   def onAuthFailure[A](request: Request[A]): Future[Result] = {

@@ -70,14 +70,14 @@
 
                     <p>For the purposes of these examples, except where stated otherwise, the user has the following roles:</p>
                     <ul>
-                        @for(role <- handler.getSubject(request).get.getRoles()){
+                        @for(role <- utils.TemplateUtils.getSubjectNow(handler, request).get.getRoles()){
                         <li>@role.getName</li>
                         }
                     </ul>
 
                     <p>The user also has the following permissions:</p>
                     <ul>
-                        @for(permission <- handler.getSubject(request).get.getPermissions()){
+                        @for(permission <- utils.TemplateUtils.getSubjectNow(handler, request).get.getPermissions()){
                         <li>@permission.getValue</li>
                         }
                     </ul>
