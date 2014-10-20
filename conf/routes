@@ -4,10 +4,18 @@
 
 # Home page
 GET     /                           controllers.Application.index
+
 GET     /restrict1                  controllers.RestrictController.restrictOne
 GET     /restrict2                  controllers.RestrictController.restrictTwo
 GET     /restrict3                  controllers.RestrictController.restrictThree
 GET     /restrict4                  controllers.RestrictController.restrictFour
+
+
+GET     /restrictAction1                  controllers.RestrictActionController.restrictOne
+GET     /restrictAction2                  controllers.RestrictActionController.restrictTwo
+GET     /restrictAction3                  controllers.RestrictActionController.restrictThree
+GET     /restrictAction4                  controllers.RestrictActionController.restrictFour
+
 GET     /pureLuck                   controllers.DynamicRestrictionsController.pureLuck
 GET     /noWayJose                  controllers.DynamicRestrictionsController.noWayJose
 GET     /rhp_roleHolderPresent      controllers.SubjectPresentController.loggedIn
