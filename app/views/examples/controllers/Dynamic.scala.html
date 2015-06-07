@@ -29,8 +29,8 @@ Dynamic("pureLuck",
 def isAllowed[A](name: String,
                  meta: String,
                  deadboltHandler: DeadboltHandler,
-                 request: Request[A]) =
-  System.currentTimeMillis() % 2 == 0</pre>
+                 request: Request[A]): Future[Boolean] =
+  Future(System.currentTimeMillis() % 2 == 0)</pre>
     </div>
     <div class="span2">
         <iframe src="@routes.DynamicRestrictionsController.pureLuck"></iframe>
@@ -53,7 +53,7 @@ Dynamic("pureLuck",
   def isAllowed[A](name: String,
                    meta: String,
                    deadboltHandler: DeadboltHandler,
-                   request: Request[A]) = false</pre>
+                   request: Request[A]): Future[Boolean] = Future(false)</pre>
     </div>
     <div class="span2">
         <iframe src="@routes.DynamicRestrictionsController.noWayJose"></iframe>

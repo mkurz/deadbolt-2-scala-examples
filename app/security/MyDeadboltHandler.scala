@@ -13,11 +13,10 @@ import scala.concurrent._
  */
 class MyDeadboltHandler(dynamicResourceHandler: Option[DynamicResourceHandler] = None) extends DeadboltHandler {
 
-  def beforeAuthCheck[A](request: Request[A]) = None
+  def beforeAuthCheck[A](request: Request[A]) = Future(None)
 
-  override def getDynamicResourceHandler[A](request: Request[A]): Option[DynamicResourceHandler] = {
-    if (dynamicResourceHandler.isDefined) dynamicResourceHandler
-    else Some(new MyDynamicResourceHandler())
+  override def getDynamicResourceHandler[A](request: Request[A]): Future[Option[DynamicResourceHandler]] = {
+    Future(dynamicResourceHandler.orElse(Some(new MyDynamicResourceHandler())))
   }
 
   override def getSubject[A](request: Request[A]): Future[Option[Subject]] = {
