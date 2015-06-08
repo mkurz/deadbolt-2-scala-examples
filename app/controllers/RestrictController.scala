@@ -1,5 +1,7 @@
 package controllers
 
+import javax.inject.Inject
+
 import views.html.accessOk
 import play.api.mvc.{Action, Controller}
 import security.MyDeadboltHandler
@@ -9,31 +11,31 @@ import be.objectify.deadbolt.scala.DeadboltActions
  *
  * @author Steve Chaloner (steve@objectify.be)
  */
-object RestrictController extends Controller with DeadboltActions
+class RestrictController @Inject() (deadbolt: DeadboltActions) extends Controller
 {
   def index = Action {
                 Ok(accessOk())
               }
 
-  def restrictOne = Restrict(Array("foo"), new MyDeadboltHandler) {
+  def restrictOne = deadbolt.Restrict(Array("foo"), new MyDeadboltHandler) {
                       Action {
                         Ok(accessOk())
                       }
                     }
 
-  def restrictTwo = Restrict(Array("foo", "bar"), new MyDeadboltHandler) {
+  def restrictTwo = deadbolt.Restrict(Array("foo", "bar"), new MyDeadboltHandler) {
                       Action {
                         Ok(accessOk())
                       }
                     }
 
-  def restrictThree = Restrict(Array("foo", "!bar"), new MyDeadboltHandler) {
+  def restrictThree = deadbolt.Restrict(Array("foo", "!bar"), new MyDeadboltHandler) {
                         Action {
                           Ok(accessOk())
                         }
                       }
 
-  def restrictFour = Restrict(Array("hurdy"), new MyDeadboltHandler) {
+  def restrictFour = deadbolt.Restrict(Array("hurdy"), new MyDeadboltHandler) {
                        Action {
                          Ok(accessOk())
                        }

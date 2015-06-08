@@ -13,3 +13,5 @@ libraryDependencies ++= Seq(
 )
 
 resolvers += Resolver.sonatypeRepo("snapshots")
+
+routesGenerator := InjectedRoutesGenerator

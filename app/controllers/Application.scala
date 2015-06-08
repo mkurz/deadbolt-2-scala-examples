@@ -3,7 +3,7 @@ package controllers
 import play.api.mvc.{Action, Controller}
 import security.MyDeadboltHandler
 
-object Application extends Controller
+class Application extends Controller
 {
   def index = Action {
                 implicit request =>
