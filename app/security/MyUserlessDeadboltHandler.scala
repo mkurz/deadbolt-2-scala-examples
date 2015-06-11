@@ -11,7 +11,7 @@ import scala.concurrent.Future
  *
  * @author Steve Chaloner (steve@objectify.be)
  */
-class MyUserlessDeadboltHandler(dynamicResourceHandler: Option[DynamicResourceHandler] = None) extends MyDeadboltHandler
+class MyUserlessDeadboltHandler extends MyDeadboltHandler
 {
   override def getSubject[A](request: Request[A]): Future[Option[Subject]] = Future(None)
 }

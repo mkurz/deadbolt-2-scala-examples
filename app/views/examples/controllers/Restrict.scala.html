@@ -1,11 +1,10 @@
 <div class="row-fluid" id="controller-Restrict">
     <div class="span10">
-        <h3 class="subsection">Restrictions - shorthand version</h3>
+        <h3 class="subsection">Restrict</h3>
 
-        <p>Restrictions has two overloaded forms - one that takes a single group of roles, and another that takes
-            multiple groups.  A group is represented by an array.</p>
+        <p>Restrict requires users to have roles that match the ones defined in the constraint, in any combinaton of AND/OR/NOT</p>
 
-        <p>The first form of Restrictions uses an ANDed set of roles to determine access to an action.  For example, a
+        <p>Restrict uses an ANDed set of roles to determine access to an action - these are defined as as Array[String[.  For example, a
             user with the roles "foo" and "bar" could access a Restrictions-protected action that specified any of the
             following:</p>
         <ul>
@@ -14,7 +13,8 @@
             <li>foo AND bar</li>
         </ul>
 
-        <p>However, a Restrictions that required "foo", "bar" and "hurdy" would deny access to the user.</p>
+        <p>However, a Restrict that required "foo", "bar" and "hurdy" would deny access to the user.</p>
+        <p>To define OR relationships, multiple groups within a list, i.e. List[Array[String]]</p>
     </div>
 </div>
 <div class="row-fluid">
@@ -24,7 +24,7 @@
 <div class="row-fluid">
     <div class="span5">
                     <pre>
-Restrictions(Array("foo"), new MyDeadboltHandler) {
+Restrict(Array("foo")) {
   Action {
     Ok(accessOk())
   }
@@ -37,7 +37,7 @@ Restrictions(Array("foo"), new MyDeadboltHandler) {
 <div class="row-fluid">
     <div class="span5">
                     <pre>
-Restrictions(Array("foo", "bar"), new MyDeadboltHandler) {
+Restrictions(Array("foo", "bar")) {
   Action {
     Ok(accessOk())
   }
@@ -50,7 +50,7 @@ Restrictions(Array("foo", "bar"), new MyDeadboltHandler) {
 <div class="row-fluid">
     <div class="span5">
                     <pre>
-Restrictions(Array("foo", "!bar"), new MyDeadboltHandler) {
+Restrictions(Array("foo", "!bar")) {
   Action {
     Ok(accessOk())
   }
@@ -63,7 +63,7 @@ Restrictions(Array("foo", "!bar"), new MyDeadboltHandler) {
 <div class="row-fluid">
     <div class="span5">
                     <pre>
-Restrictions(Array("hurdy"), new MyDeadboltHandler) {
+Restrictions(Array("hurdy")) {
   Action {
     Ok(accessOk())
   }

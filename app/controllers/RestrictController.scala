@@ -2,42 +2,57 @@ package controllers
 
 import javax.inject.Inject
 
-import views.html.accessOk
+import be.objectify.deadbolt.scala.{ActionBuilders, DeadboltActions}
 import play.api.mvc.{Action, Controller}
 import security.MyDeadboltHandler
-import be.objectify.deadbolt.scala.DeadboltActions
+import views.html.accessOk
 
 /**
  *
  * @author Steve Chaloner (steve@objectify.be)
  */
-class RestrictController @Inject() (deadbolt: DeadboltActions) extends Controller
+class RestrictController @Inject() (deadbolt: DeadboltActions, actionBuilder: ActionBuilders) extends Controller
 {
   def index = Action {
                 Ok(accessOk())
               }
 
-  def restrictOne = deadbolt.Restrict(Array("foo"), new MyDeadboltHandler) {
+  def restrictOne = deadbolt.Restrict(List(Array("foo"))) {
                       Action {
                         Ok(accessOk())
                       }
                     }
 
-  def restrictTwo = deadbolt.Restrict(Array("foo", "bar"), new MyDeadboltHandler) {
+  def restrictTwo = deadbolt.Restrict(List(Array("foo", "bar"))) {
                       Action {
                         Ok(accessOk())
                       }
                     }
 
-  def restrictThree = deadbolt.Restrict(Array("foo", "!bar"), new MyDeadboltHandler) {
+  def restrictThree = deadbolt.Restrict(List(Array("foo", "!bar"))) {
                         Action {
                           Ok(accessOk())
                         }
                       }
 
-  def restrictFour = deadbolt.Restrict(Array("hurdy"), new MyDeadboltHandler) {
+  def restrictFour = deadbolt.Restrict(List(Array("hurdy"))) {
                        Action {
                          Ok(accessOk())
                        }
-                     }
+                                                             }
+  def restrictOr = deadbolt.Restrict(List(Array("foo"), Array("hurdy"))) {
+                       Action {
+                         Ok(accessOk())
+                       }
+                                                             }
+
+  def restrictOne_fromBuilder = actionBuilder.RestrictAction("foo").defaultHandler() { Ok(accessOk()) }
+
+  def restrictTwo_fromBuilder = actionBuilder.RestrictAction("foo", "bar").defaultHandler() { Ok(accessOk()) }
+
+  def restrictThree_fromBuilder = actionBuilder.RestrictAction("foo", "!bar").defaultHandler() { Ok(accessOk()) }
+
+  def restrictFour_fromBuilder = actionBuilder.RestrictAction("hurdy").defaultHandler() { Ok(accessOk()) }
+
+  def restrictOr_fromBuilder = actionBuilder.RestrictAction(List(Array("foo"), Array("hurdy"))).defaultHandler() { Ok(accessOk()) }
 }

@@ -2,27 +2,35 @@ package controllers
 
 import javax.inject.Inject
 
-import views.html.accessOk
+import be.objectify.deadbolt.scala.{ActionBuilders, DeadboltActions}
+import be.objectify.deadbolt.scala.cache.HandlerCache
 import play.api.mvc.{Action, Controller}
-import security.{MyUserlessDeadboltHandler, MyDeadboltHandler}
-import be.objectify.deadbolt.scala.DeadboltActions
+import security.HandlerKeys
+import views.html.accessOk
 
 /**
  *
  * @author Steve Chaloner (steve@objectify.be)
  */
-class SubjectNotPresentController @Inject() (deadbolt: DeadboltActions) extends Controller
+class SubjectNotPresentController @Inject() (deadbolt: DeadboltActions, handlers: HandlerCache, actionBuilder: ActionBuilders) extends Controller
 {
-
-  def loggedIn = deadbolt.SubjectNotPresent(new MyDeadboltHandler) {
+  def loggedIn = deadbolt.SubjectNotPresent() {
                    Action {
                      Ok(accessOk())
                    }
                  }
 
-  def notLoggedIn = deadbolt.SubjectNotPresent(new MyUserlessDeadboltHandler) {
+  def notLoggedIn = deadbolt.SubjectNotPresent(handlers(HandlerKeys.userlessHandler)) {
                       Action {
                         Ok(accessOk())
                       }
                     }
+
+  def loggedIn_withBuilder = actionBuilder.SubjectNotPresentAction().defaultHandler() {
+      Ok(accessOk())
+  }
+
+  def notLoggedIn_withBuilder = actionBuilder.SubjectNotPresentAction().key(HandlerKeys.userlessHandler) {
+      Ok(accessOk())
+  }
 }
