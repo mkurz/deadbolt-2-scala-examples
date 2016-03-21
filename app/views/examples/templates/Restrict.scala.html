@@ -1,7 +1,7 @@
-@(implicit request: Request[Any])
+@import be.objectify.deadbolt.scala.AuthenticatedRequest
+@(implicit request: AuthenticatedRequest[Any])
 
 @import be.objectify.deadbolt.scala.views.html._
-@import be.objectify.deadbolt.core.utils.TemplateUtils._
 
 <div class="row-fluid" id="template-restrict">
     <div class="span10">
@@ -32,12 +32,12 @@
     </div>
     <div class="span5">
         <pre>
-@@restrict(roles = List(as("foo", "bar"))) {
+@@restrict(roles = List(Array("foo", "bar"))) {
   This content should be visible
 }</pre>
     </div>
     <div class="span2">
-        @restrict(roles = List(as("foo", "bar"))) {
+        @restrict(roles = List(Array("foo", "bar"))) {
         This content should be visible
         }
     </div>
@@ -49,12 +49,12 @@
     </div>
     <div class="span5">
         <pre>
-@@restrict(roles = List(as("foo", "bar", "hurdy"))) {
+@@restrict(roles = List(Array("foo", "bar", "hurdy"))) {
   This content should NOT be visible
 }</pre>
     </div>
     <div class="span2">
-        @restrict(roles = List(as("foo", "bar", "hurdy"))) {
+        @restrict(roles = List(Array("foo", "bar", "hurdy"))) {
         This content should NOT be visible
         }
     </div>
@@ -66,12 +66,12 @@
     </div>
     <div class="span5">
         <pre>
-@@restrict(roles = List(as("hurdy"), as("foo", "bar"))) {
+@@restrict(roles = List(Array("hurdy"), Array("foo", "bar"))) {
   This content should be visible
 }</pre>
     </div>
     <div class="span2">
-        @restrict(roles = List(as("hurdy"), as("foo", "bar"))) {
+        @restrict(roles = List(Array("hurdy"), Array("foo", "bar"))) {
             This content should be visible
         }
     </div>
@@ -83,12 +83,12 @@
     </div>
     <div class="span5">
         <pre>
-@@restrictOr(roles = List(as("foo", "bar"))) {
+@@restrictOr(roles = List(Array("foo", "bar"))) {
   This content should be visible
 }{Sorry, you're not allowed to see this}</pre>
     </div>
     <div class="span2">
-        @restrictOr(roles = List(as("foo", "bar"))) {
+        @restrictOr(roles = List(Array("foo", "bar"))) {
         This content should be visible
         }{Sorry, you're not allowed to see this}
     </div>
@@ -100,12 +100,12 @@
     </div>
     <div class="span5">
         <pre>
-@@restrictOr(roles = List(as("foo", "bar", "hurdy"))) {
+@@restrictOr(roles = List(Array("foo", "bar", "hurdy"))) {
   This content should NOT be visible
 }{Sorry, you're not allowed to see this}</pre>
     </div>
     <div class="span2">
-        @restrictOr(roles = List(as("foo", "bar", "hurdy"))) {
+        @restrictOr(roles = List(Array("foo", "bar", "hurdy"))) {
         This content should NOT be visible
         }{Sorry, you're not allowed to see this}
     </div>

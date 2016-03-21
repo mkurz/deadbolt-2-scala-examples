@@ -1,7 +1,6 @@
-@(handler: be.objectify.deadbolt.scala.DeadboltHandler)(implicit request: Request[Any])
-
+@import be.objectify.deadbolt.scala.AuthenticatedRequest
 @import be.objectify.deadbolt.scala.views.html._
-@import be.objectify.deadbolt.core.utils.TemplateUtils._
+@(handler: be.objectify.deadbolt.scala.DeadboltHandler)(implicit request: AuthenticatedRequest[Any])
 
 <div class="row-fluid" id="template-subjectPresent">
     <div class="span10">

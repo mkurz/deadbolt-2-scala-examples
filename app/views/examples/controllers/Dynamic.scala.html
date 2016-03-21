@@ -16,20 +16,18 @@
 <div class="row-fluid">
     <div class="span4">
         <pre>
-Dynamic("pureLuck",
-        "",
-        new MyDeadboltHandler) {
-  Action {
-    Ok(accessOk())
-  }
-}</pre>
+  def pureLuck = deadbolt.Dynamic(name = "pureLuck")() { authRequest =>
+    Future {
+      Ok(accessOk())
+    }
+  }</pre>
     </div>
     <div class="span4">
         <pre>
 def isAllowed[A](name: String,
-                 meta: String,
+                 meta: Option[Any],
                  deadboltHandler: DeadboltHandler,
-                 request: Request[A]): Future[Boolean] =
+                 request: AuthenticatedRequest[A]): Future[Boolean] =
   Future(System.currentTimeMillis() % 2 == 0)</pre>
     </div>
     <div class="span2">
@@ -39,21 +37,18 @@ def isAllowed[A](name: String,
 <div class="row-fluid">
     <div class="span4">
         <pre>
-Dynamic("pureLuck",
-        "",
-        new MyDeadboltHandler(
-            MyAlternativeDynamicResourceHandler)) {
-  Action {
-    Ok(accessOk())
-  }
-}</pre>
+  def noWayJose = deadbolt.Dynamic(name = "pureLuck", handler = handlers(HandlerKeys.altHandler))() { authRequest =>
+    Future {
+      Ok(accessOk())
+    }
+  }</pre>
     </div>
     <div class="span4">
         <pre>
   def isAllowed[A](name: String,
-                   meta: String,
+                   meta: Option[Any],
                    deadboltHandler: DeadboltHandler,
-                   request: Request[A]): Future[Boolean] = Future(false)</pre>
+                   request: AuthenticatedRequest[A]): Future[Boolean] = Future(false)</pre>
     </div>
     <div class="span2">
         <iframe src="@routes.DynamicRestrictionsController.noWayJose"></iframe>
