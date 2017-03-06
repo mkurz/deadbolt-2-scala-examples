@@ -9,7 +9,7 @@ scalaVersion := "2.11.7"
 organization := "be.objectify"
 
 libraryDependencies ++= Seq(
-  "be.objectify" %% "deadbolt-scala" % "2.5.0-SNAPSHOT"
+  "be.objectify" %% "deadbolt-scala" % "2.5.0"
 )
 
 routesGenerator := InjectedRoutesGenerator
